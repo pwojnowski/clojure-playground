@@ -1,6 +1,6 @@
 # poligon
 
-This is just a Clojure playground for (Farenda Clojure Tutorial)[http://farenda.com/clojure-tutorial].
+This is just a Clojure playground for [Farenda Clojure Tutorial](http://farenda.com/clojure-tutorial).
 
 ## License
 
