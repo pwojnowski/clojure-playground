@@ -1,6 +1,7 @@
 (ns poligon.control-flow)
 
 ;;; case, cond, codp
+;;; http://farenda.com/clojure/clojure-switch-case
 (defn case-example
   "clojure.core.case example"
   [word]
@@ -14,8 +15,7 @@
   [p]
   (cond
     (< (count p) 4) "too short"
-    (> (count p) 10) "too long"
-    ))
+    (> (count p) 10) "too long"))
 
 (defn condp-example
   "clojure.core.condp example"
