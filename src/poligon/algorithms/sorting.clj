@@ -7,9 +7,9 @@
     (assoc! (assoc! v x (get v y)) y tmp)))
 
 (defn- insert-simple
-  [tv right]
-  (let [current-value (get tv right)]
-    (loop [i right v tv]
+  [tv cur-idx]
+  (let [current-value (get tv cur-idx)]
+    (loop [i cur-idx v tv]
       (let [left-value (get v (dec i))]
         (if (and (pos? i)
                  (> left-value current-value))
@@ -25,10 +25,10 @@
         tv))))
 
 (defn- insert
-  "Insert into correct position in transient vector `tv` element from index `right`."
-  [tv right]
-  (let [current-value (get tv right)]
-    (loop [i right v tv]
+  "Insert element from `cur-idx` into correct position in transient vector `tv`."
+  [tv cur-idx]
+  (let [current-value (get tv cur-idx)]
+    (loop [i cur-idx v tv]
       (let [left-value (get v (dec i))]
         (if (and (pos? i)
                  (> left-value current-value))
