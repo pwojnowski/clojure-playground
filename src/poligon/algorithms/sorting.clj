@@ -26,20 +26,20 @@
 
 (defn- insert
   "Insert element from `cur-idx` into correct position in transient vector `tv`."
-  [tv cur-idx]
+  [tv bound cur-idx]
   (let [current-value (get tv cur-idx)]
     (loop [i cur-idx v tv]
       (let [left-value (get v (dec i))]
-        (if (and (pos? i)
+        (if (and (< bound i)
                  (> left-value current-value))
           (recur (dec i) (assoc! v i left-value))
           (assoc! v i current-value))))))
 
 (defn insertion-sort
   "Insertion sort using transients."
-  [v]
-  (let [size (-> v count dec)]
-    (loop [i 1 tv (transient v)]
-      (if (<= i size)
-        (recur (inc i) (insert tv i))
-        (persistent! tv)))))
+  ([v] (insertion-sort v 0 (-> v count dec)))
+  ([v from to]
+   (loop [i 1 tv (transient v)]
+     (if (<= i to)
+       (recur (inc i) (insert tv from i))
+       (persistent! tv)))))

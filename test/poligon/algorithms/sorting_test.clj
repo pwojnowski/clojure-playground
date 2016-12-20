@@ -18,4 +18,9 @@
     (is (= [] (insertion-sort [])))
     (is (= [1 2 3] (insertion-sort [1 2 3])))
     (is (= [1 2 3 4 5] (insertion-sort [5 2 3 4 1])))
-    (is (= sorted-data (insertion-sort unsorted-data)))))
+    (is (= sorted-data (insertion-sort unsorted-data))))
+  (testing "Apply insertion sort on part of a vector"
+    (is (= [] (insertion-sort [])))
+    (is (= [1 2 3] (insertion-sort [1 2 3] 0 2)))
+    (is (= [1 2 3 4 5] (insertion-sort [5 3 2 1 4] 0 4)))
+    (is (= [5 2 3 1 4] (insertion-sort [5 3 2 1 4] 1 2)))))
