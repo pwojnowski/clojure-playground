@@ -4,7 +4,8 @@
   "Calculate GCD of given two numbers using Euclidean algorithm."
   [a b]
   (if (zero? b)
-    (Math/abs a)))
+    (Math/abs a)
+    (recur b (rem a b))))
 
 (defn euclid
   "Calculate GCD of given numbers using Euclidean algorithm."
