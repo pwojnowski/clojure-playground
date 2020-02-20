@@ -43,3 +43,21 @@
      (if (<= i to)
        (recur (inc i) (insert tv from i))
        (persistent! tv)))))
+
+(defn merge-sort
+  "Merge sort given sequence."
+  [v]
+  (let [size (count v)]
+    (if (> size 1)
+      (let [[part-1 part-2] (split-at (/ size 2) v)]
+        (loop [merged []
+               s1 (merge-sort part-1)
+               s2 (merge-sort part-2)]
+          (let [f1 (first s1)
+                f2 (first s2)]
+            (cond
+              (empty? s1) (into merged s2)
+              (empty? s2) (into merged s1)
+              (<= f1 f2) (recur (conj merged f1) (rest s1) s2)
+              :else (recur (conj merged f2) s1 (rest s2))))))
+      v)))
